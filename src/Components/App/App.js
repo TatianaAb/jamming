@@ -18,22 +18,17 @@ class App extends Component {
 
   addTrack(track) {
       let playlist = this.state.playlistTracks;
-      console.log("Before adding song ");
-      console.log(playlist);
       if (playlist.length === 0) {playlist.push(track);
       } else {
           let hasId = false;
           for(let i=0; i< playlist.length; i++) {
             if (playlist[i].id === track.id ) {
                hasId = true;
-               console.log("has id ?" + hasId);
                break;
             }
           }
-          hasId === false ? playlist.push(track) : console.log(" This track already in your list!");
+          !hasId ? playlist.push(track) : console.log(" This track already in your list!");
       }
-       console.log("After adding song ");
-       console.log(playlist);
       this.setState({playlistTracks: playlist});
     }
 
