@@ -9,10 +9,8 @@ let Spotify = {
   getAccessToken() {
     let href = window.location.href;
     if(userToken) {
-      console.log("in user token");
       return userToken;
     }else if(href.match("access_token")) {
-      console.log("in acc token");
       userToken = (href.match(/access_token=([^&]*)/))[1];
       let expiresIn = (href.match(/expires_in=([^&]*)/))[1];
       window.setTimeout(() => userToken = '', expiresIn * 100);
@@ -20,7 +18,6 @@ let Spotify = {
       return userToken;
     }// add else if for access denied!!
     else{
-      console.log(REDIRECT_URI);
       window.location.assign(`https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=playlist-modify-public&response_type=token`);
     }
   },
@@ -104,8 +101,4 @@ let Spotify = {
 
 };
 
-
-
 export default Spotify;
-
-// https://accounts.spotify.com/authorize?client_id=352ec2b5a578472899f07156a34b76f2&redirect_uri=http://localhost:3000/&scope=user-read-private%20user-read-email&&response_type=token
